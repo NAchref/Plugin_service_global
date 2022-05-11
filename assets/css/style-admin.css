@@ -1,0 +1,97 @@
+.widefat {width: 100%;}
+.ss-list-width {min-width:10%}
+.ss-form-width {width:100%}
+.ss-th-width {width:25%}
+.ss-field-width {width:75%}
+
+.wrap{
+  width: 95%;
+  height: 80%;
+}
+
+.btn-update {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 10px;
+  background: #94d3a2;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-delete{
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 10px;
+  background: rgb(226, 95, 95);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-service{
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: rgb(81, 157, 237);
+  color: #ffffff;
+  border: none;
+}
+
+input[type=text] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=textarea] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.wp-core-ui .button, .wp-core-ui .button-secondary {
+  color: #2271b1;
+  border-color: #2271b1;
+  background: #f6f7f7;
+  vertical-align: top;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.wrap>h2:first-child {
+  font-family: 'Raleway',sans-serif; 
+  font-size: 27px; 
+  font-weight: 600;
+  line-height: 42px; 
+  margin: 0 0 24px; 
+  text-transform: uppercase;
+  padding: 9px 0 4px 0;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+.widefat tfoot td, .widefat th, .widefat thead td {
+  font-family: 'Raleway',sans-serif; 
+  font-size: 15px;
+}
+
+.lab-wid{
+  display: block;
+  width: 200px; 
+}
+
+label 
+{ display: block;
+  width: 200px; }
+
