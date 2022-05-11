@@ -30,7 +30,7 @@ if(!empty($titre)){
   }
 }
 }
-$rows = $wpdb->get_results("SELECT id,titre,description,icone_img,image_gallerie from $table_name");
+$rows = $wpdb->get_results("SELECT ID, TITRE, DESCRIPTION, ICONE, GALLERIE from $table_name");
 ?>
 <link type="text/css" href="<?php echo WP_PLUGIN_URL; ?>./service-global/assets/css/custom.css" rel="stylesheet" />
 <div class="section"> 
@@ -48,8 +48,8 @@ $rows = $wpdb->get_results("SELECT id,titre,description,icone_img,image_gallerie
       foreach ($rows as $row) {
         ?>
           <div class="grid">
-            <span><input type="checkbox" name="titre" class="checkbox" value="<?php echo $row->titre; ?>"/><i class="fas fa-unlink"></i>&nbsp;&nbsp;<?php echo $row->titre; ?></span>
-            <small><?php echo $row->description; ?></small>
+            <span><input type="checkbox" name="titre" class="checkbox" value="<?php echo $row->titre; ?>"/><i class="fas fa-unlink"></i>&nbsp;&nbsp;<?php echo $row->TITRE; ?></span>
+            <small><?php echo $row->DESCRIPTION; ?></small>
             <a href="<?php echo ''; ?>">En savoir plus</a>
           </div>
       <?php
