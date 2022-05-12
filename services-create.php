@@ -4,9 +4,13 @@ function services_create() {
   $id = $_POST["id"];
   $titre = $_POST["titre"];
   $description = $_POST["description"];
-  $icone = $_POST["icone"];
-  $categorie = $_POST["categorie"];
   $image_gallerie = $_POST["image_gallerie"];
+
+
+  $icone = $_FILES["icone"]["name"];
+  $tmp_icone_img = $_FILES["icone"]["tmp_name"];
+  $folder="upload/";
+ 
 
   global $wpdb;
   $table_categories = $wpdb->prefix . "categories";
@@ -17,12 +21,17 @@ function services_create() {
     if (isset($_POST['insert'])) {
         global $wpdb;
         $table_name = $wpdb->prefix . "services";
+
+        
 		
 		if(!empty($titre)){
+
+            move_uploaded_file($tmp_icone_img,"/upload".$icone);
 			$wpdb->insert(
 					$table_name, //table
-					array('TITRE' => $titre, 'DESCRIPTION' => $description, 'ICONE' => $icone, 'GALLERIE' => $image_gallerie), //data
-					array('%s', '%s', '%s', '%s', '%s') //data format			
+					array('TITRE' => $titre, 'DESCRIPTION' => $description, 'GALLERIE' => $image_gallerie), //data
+					array('%s', '%s', '%s', '%s', '%s') //data format
+                    			
 			);
 			$message.="Service inserted";
 		
@@ -40,7 +49,7 @@ function services_create() {
         <?php if (isset($message)): ?><div class="updated"><p><?php echo $message; ?></p></div><?php endif; ?>
 		<?php if (isset($error)): ?><div class="error"><p><?php echo $error; ?></p></div><?php endif; ?>
 
-        <form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+        <form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
             <table class='wp-list-table widefat fixed'>
                 <!--<tr>
                     <th class="ss-th-width">ID</th>
@@ -51,9 +60,9 @@ function services_create() {
                     <td><input type="text" name="titre"  value="<?php echo $titre; ?>" class="required ss-field-width" /></td>
                 </tr>
 				
-				        <tr>
+				<tr>
                     <th class="ss-th-width">Service icone</th>
-                    <td><input type="text" name="icone"  value="<?php echo $icone; ?>" class="required ss-field-width" /></td>
+                    <td><input type="file" name="icone"  value="<?php echo $icone; ?>" class="required ss-field-width" /></td>
                 </tr>
 				
 			         	<tr>
