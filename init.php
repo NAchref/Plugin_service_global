@@ -39,7 +39,7 @@ function ss_options_install() {
 			PRIMARY KEY (`ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
-
+		//CREATION TABLE COMMANDES	
 		$sql_commandes ="CREATE TABLE IF NOT EXISTS $table_commandes (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`COMMANDS` varchar(500) NOT NULL,
@@ -48,7 +48,7 @@ function ss_options_install() {
 			PRIMARY KEY (`ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
-		
+		//CREATION TABLE ASSOCIATION COMMANDES & SERVICES
 		$sql_commandes_services = " CREATE TABLE IF NOT EXISTS $table_commandes_services (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`CMD_ID` int(11) NOT NULL,
@@ -58,7 +58,7 @@ function ss_options_install() {
 			KEY `SERVICE_ID` (`SERVICE_ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 		
-	
+		//CREATION TABLE OPTIONS DE SERVICE 
 		$sql_optionservices = "CREATE TABLE IF NOT EXISTS $table_optionservices (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`DESCRIPTION` varchar(350) NOT NULL,
@@ -66,6 +66,7 @@ function ss_options_install() {
 			PRIMARY KEY (`ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
+		//CREATION TABLE ASSOCIATION OPTIONS & SERVICES
 		$sql_options_services = "CREATE TABLE IF NOT EXISTS $table_options_services (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`OPTIONS_ID` int(11) NOT NULL,
@@ -75,7 +76,7 @@ function ss_options_install() {
 			KEY `SERVICE_ID` (`SERVICE_ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
-		
+		//CREATION TABLE SERVICES
 		$sql_services = "CREATE TABLE IF NOT EXIST $table_services (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`TITRE` varchar(200) NOT NULL,
@@ -85,7 +86,7 @@ function ss_options_install() {
 			PRIMARY KEY (`ID`)
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;" ;
 		
-	
+	  //CREATION TABLE ASSOCIATION SERVICES & CATEGORIES
 		$sql_services_categories = "CREATE TABLE IF NOT EXISTS $table_services_categories (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`CAT_ID` int(11) NOT NULL,
