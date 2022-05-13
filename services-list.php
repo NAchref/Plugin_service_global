@@ -31,7 +31,7 @@ function services_list() {
                     <!--<td class="manage-column ss-list-width"><?php echo $row->ID; ?></td>-->
                     <td class="manage-column ss-list-width"><?php echo $row->TITRE; ?></td>
                     <td class="manage-column ss-list-width"><?php echo $row->DESCRIPTION ;?></td>
-					<td class="manage-column ss-list-width"><?php echo $row->ICONE ; ?></td>
+					<td class="manage-column ss-list-width"><img src="<?php echo $row->ICONE ; ?>"></td>
                     <td class="manage-column ss-list-width"><?php echo $row->GALLERIE ; ?></td>
                     <td><button class="btn-update fa fa-fire" onclick="window.location.href='<?php echo admin_url('admin.php?page=services_update&ID=' . $row->ID); ?>'" >&nbsp;Mise a jour</button>
                     <button class="btn-delete btn fa fa-trash" onclick="window.location.href='<?php echo admin_url('admin.php?page=services_update&ID=' . $row->id); ?>'" >&nbsp;Supprimer</button></td>
