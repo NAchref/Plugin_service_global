@@ -9,6 +9,9 @@ function services_create() {
 
   $icone = $_FILES["icone"]["name"];
   $tmp_icone_img = $_FILES["icone"]["tmp_name"];
+  $path = "\wp-content\plugins\service-global\upload\ ";
+
+
   
  
 
@@ -21,18 +24,18 @@ function services_create() {
     if (isset($_POST['insert'])) {
         global $wpdb;
         $table_name = $wpdb->prefix . "services";
-        $path = WP_PLUGIN_URL . "./service-global/upload/";
+        
 
         
 		
 		if(!empty($titre)){
 
-            move_uploaded_file($tmp_icone_img,$icone);
-            $item = file_get_contents($_FILES['icone']['tmp_icone_image']);
+            move_uploaded_file($tmp_icone_img,ABSPATH.$path.$icone);
 			$wpdb->insert(
 					$table_name, //table
 					array('TITRE' => $titre, 'DESCRIPTION' => $description,'ICONE' => $icone ,'GALLERIE' => $image_gallerie), //data
 					array('%s', '%s', '%s', '%s', '%s') //data format
+
                     			
 			);
 			$message.="Service inserted";
