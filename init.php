@@ -77,7 +77,7 @@ function ss_options_install() {
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
 		//CREATION TABLE SERVICES
-		$sql_services = "CREATE TABLE IF NOT EXIST $table_services (
+		$sql_services = "CREATE TABLE IF NOT EXISTS $table_services (
 			`ID` int(11) NOT NULL AUTO_INCREMENT,
 			`TITRE` varchar(200) NOT NULL,
 			`DESCRIPTION` text NOT NULL,
