@@ -15,8 +15,16 @@ box-shadow: 1px 2px 5px 4px var(--secondaryBg);
 
 
 .float-container {
+  position: fixed;
   padding: 25px;
+  align-items: center;
+  justify-content: center;
+  top: 150px;
+  left: 185px;
+  height: 150vh;
+  width: 150vh;
 }
+
 
 .float-child {
   width: 50%;
@@ -24,17 +32,23 @@ box-shadow: 1px 2px 5px 4px var(--secondaryBg);
   float: left;
   padding: 20px;
   border: 1px solid #238bbf;
+  background-color: #ffffff;
+  margin-bottom: 30px;
+
 }
 
 .grid-gallerie {
   background-color: #238bbf;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  padding-bottom: 30px;
 }
 
 .grid-details {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  padding-bottom: 30px;
+
 }
 
 h2{
@@ -99,6 +113,8 @@ textarea{
 
 img{
   display:block;
+  height: 200px;
+  width: 220px;
 }
 .table{
   display: table;
