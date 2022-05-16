@@ -9,21 +9,21 @@ function service_collection_table_html(){
 if (isset($_POST['insert'])) {
 global $wpdb;
 $table_commandes = $wpdb->prefix . "commandes";
-$command = $_POST["titre"];
-$NUM_COMMAND = rand();
+$commandes = $_POST['commandes'];
+foreach($commandes as $key=>$values){
+$listofcommandes .= $values.", ";
+}
 
-if(!empty($titre)){
+
+
   $wpdb->insert(
       $table_commandes, //table
-      array('COMMAND' => $command, 'NUM_COMMAND' => $NUM_COMMAND, 'DATE_COMMAND' => '', 'TOTAL' => ''), //data
-      array('%s', '%s', '%s', '%s') //data format			
+      array('COMMANDS' => $listofcommandes, 'REF' => ''), //data
+      array('%s', '%s') //data format			
   );
+
   $message.="Commands inserted";
-} else {
-  if(empty($titre)){
-    $error .= "S'il vous plait insérer au moins un service<br>";
-  }
-}
+
 }
 $rows = $wpdb->get_results("SELECT ID, TITRE, DESCRIPTION, ICONE, GALLERIE from $table_name");
 ?>
@@ -46,23 +46,31 @@ $rows = $wpdb->get_results("SELECT ID, TITRE, DESCRIPTION, ICONE, GALLERIE from 
       foreach ($rows as $row) {
         ?>
           <div class="grid">
-            <span><input type="checkbox" name="titre" class="checkbox" value="<?php echo $row->titre; ?>"/><i class="fas fa-unlink"></i>&nbsp;&nbsp;<?php echo $row->TITRE; ?></span>
+            <span><input type="checkbox" name="commandes[]" class="checkbox" value="<?php echo $row->TITRE; ?>"/><i class="fas fa-unlink"></i>&nbsp;&nbsp;<?php echo $row->TITRE; ?></span>
             <small><?php echo $row->DESCRIPTION; ?></small>
-            <a href="javascript:popUp();">En savoir plus</a>
+            <a href="javascript:popUp(<?php echo $row->ID; ?>,'<?php echo $row->TITRE; ?>','<?php echo $row->DESCRIPTION; ?>');">En savoir plus</a>
           </div>
       <?php
       }?>
     </div>
-    <input type='submit' name="insert" value='Valider la sélection' class='btn-selection'>
+    <input type='submit' name="insert" value='Valider la sélection' class='btn-selection'/>
   </form>
 </div>
 
+<?php 
 
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . "services";
+        $rows = $wpdb->get_results("SELECT ID, TITRE,DESCRIPTION,ICONE,GALLERIE from $table_name");
+
+     ?>
+ 
 <div class="float-container" style="display: none;" id="container"> 
 <div class="float-child grid-gallerie">
     <div class="">
     <img class="img-icon" src="<?php echo WP_PLUGIN_URL; ?>/service-global/media/city-solid.svg" alt="">
-    <h2>Location de bureau</h2>
+    <h2 id="titreModal"></h2>
     <div class="bg-image-wrapper">
     <div class="table">
         <div class="row">
@@ -80,7 +88,7 @@ $rows = $wpdb->get_results("SELECT ID, TITRE, DESCRIPTION, ICONE, GALLERIE from 
   <div class="float-child grid-details">
     <div class="">
     <span>Détails</span>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quasi nulla eum delectus adipisci. Totam molestias saepe, quidem dolorum accusantium optio, sequi explicabo possimus odio nulla odit sed vero ipsumectus adipisci saepe, quidem dolorum accusantium optio, sequi explicabo possimus odio nulla odit sed vero ipsum.</p>
+    <p id="descriptionModal"></p>
     <label>Options</label><br>
     <select name="option" id="option-select">
         <option value="">100m2 - 2000£/mois </option>
@@ -95,6 +103,9 @@ $rows = $wpdb->get_results("SELECT ID, TITRE, DESCRIPTION, ICONE, GALLERIE from 
     </div>
   </div>
 </div>
+ 
+<?php
+      ?>
 
 
 <?php
@@ -103,17 +114,39 @@ return ob_get_clean();
 //create shortcode!
 add_shortcode('service_collection_table', 'service_collection_table_html');
 define('ROOTDIR', plugin_dir_path(__FILE__));
-require_once(ROOTDIR . 'template/singel_page_service.php');
 
 ?>
 <script>
 
-function popUp(){
+document.addEventListener('DOMContentLoaded', () => {  
+document.getElementById("addCommande").addEventListener("click",function(){
+
+  <?php 
+  global $wpdb;
+  $table_commandes = $wpdb->prefix . "commandes";
+  $wpdb->insert(
+      $table_commandes, //table
+      array('COMMAND' => "test", 'NUM_COMMAND' => "123", 'DATE_COMMAND' => '', 'TOTAL' => ''), //data
+      array('%s', '%s', '%s', '%s') //data format			
+  ); ?>
+  var markedCheckbox = document.querySelectorAll('.checkbox:checked');
+for (var checkbox of markedCheckbox) {
+console.log(checkbox.getAttribute('value'))
+}
+});
+});
+
+function popUp(id,titre,description){
+  console.log(id,titre,description)
   var container = document.getElementById('container');
   var section = document.getElementById('section');
   container.setAttribute('style', 'display: block');
   section.setAttribute('style','opacity: 1;');
+  document.getElementById('titreModal').innerHTML = titre;
+  document.getElementById('descriptionModal').innerHTML= description;
 }
+
+
 
 </script>
 
